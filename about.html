@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About | ASL Translator</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+    <div class="about-page">
+
+
+        <!-- Navigation -->
+        <nav>
+
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="community.html">Community</a>
+            <a href="raise.html">Fundraising</a>
+
+
+        </nav>
+
+
+        <!-- About Section -->
+        <section class="about-intro">
+
+            <h1>Bridging the Gap Between Sign and Sound</h1>
+
+            <p>
+                GITHUB LINKS: <br>
+                https://github.com/sarabhatnagar6/WLASL---50-words
+                <br>
+                https://github.com/sarabhatnagar6/ASL-translation
+                <br>
+                https://github.com/sarabhatnagar6/asl-citizen-project
+                
+
+            </p>
+
+        </section>
+
+
+        <section class="why-project">
+
+            <div class="about-image">
+
+                <!-- picture -->
+                 <img src="images\machinepic.JPEG" alt="ASL Translator project">
+                <img src="images\wiring.jpeg" alt="ASL Translator project">
+
+            </div>
+
+
+            <div class="about-text">
+
+                <h2>Why I Created This</h2>
+
+                <p>
+                    The idea for this project initially came from my desire to communicate with my peers. In fourth grade, I had a nonverbal classmate, and because I knew very little sign language, communicating with her was difficult. A similar situation happened again in seventh grade. However, this time, I remembered my experience from fourth grade and realized that I had encountered the same barrier years before. These experiences made me realize how difficult it can be to communicate when two people do not share the same method of communication, and ultimately inspired me to create a device that could help bridge that gap.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="how-it-works">
+
+            <h2>How It Works</h2>
+
+
+            <div class="how-columns">
+
+
+                <div class="models">
+
+                    <h3>The Models                                                    </h3>
+
+
+                    <div class="model">
+
+                        <h4>Model 1: DTW</h4>
+
+                        <p>
+                            The system started with a small, custom-built recognition model covering five essential signs: hello, bye, thanks, yes, and no. For this, I used MediaPipe to track hand landmarks in real time, capturing 21 key points per hand and normalizing them relative to the wrist so the model wasn't sensitive to hand position or distance from the camera. Rather than training a neural network, I used Dynamic Time Warping (DTW) — a technique that directly compares a live gesture's motion pattern against a library of pre-recorded examples, finding the closest match based on how similar the two motions are over time. This approach works well for a small, focused vocabulary, since each sign only needs to be compared against a handful of stored samples per word.
+                        </p>
+
+                    </div>
+
+
+                    <div class="model">
+
+                        <h4>Model 2: Transformer</h4>
+
+                        <p>
+                            To expand beyond five words, I moved to a fundamentally different approach: a transformer-based neural network trained on the WLASL (Word-Level American Sign Language) dataset, a large public collection of ASL videos. Instead of tracking a single hand, this model captures a full 225-feature representation of the signer's body per frame — pose, left hand, and right hand together — normalized relative to the shoulders so the model generalizes across different body positions and distances from the camera. Rather than comparing directly to stored examples, the transformer learns generalized patterns of motion across many different signers and many examples of each word, allowing it to recognize signs it's never seen performed before. This shift traded the simplicity and precision of direct comparison for the ability to scale to a much larger vocabulary — currently 50 signs — at the cost of requiring far more data and computational complexity to train.
+                        </p>
+
+                    </div>
+
+                    <div class="model">
+                        <h5>Model 3: Transformer ASL Citizen</h5>
+                        <p> Once my WLASL model began working, I realized that the number of samples per word downloaded were not enough. I switched to ASL Citizen's dataset, which gave me over 3000 words, but  for the sake of taking it step by step, and RAM limits, I narrowed these videos down to the top 1004 signs. The transfomer aspect of the model is identical, though. One small difference is that this version uses 30 frames as opposed to the original 75. This is to make it faster.</p>
+
+                </div>
+
+
+                <div class="tools">
+                    <h3>Tools</h3>
+
+                    <strong>Dataset</strong>
+                    <br>
+
+                    <strong>WLASL (Word-Level American Sign Language)</strong> — public ASL video dataset; used top 100 signs, narrowed to a 50-word subset for accuracy.
+                    <strong>ASL Citizen - Larget datset of public ASL Videos. Original dataset was narrowed down to top 1004 words.</strong>
+                    <br><br>
+
+                    <strong>Core Libraries & Frameworks</strong>
+                    <br>
+                    MediaPipe — real-time hand/pose landmark detection from webcam video
+                    <br>
+                    TensorFlow / Keras — built and trained the transformer model
+                    <br>
+                    TensorFlow Lite — converted the model for efficient Pi inference
+                    <br>
+                    dtaidistance — Dynamic Time Warping for the 5-word matching system
+                    <br>
+                    OpenCV — webcam capture and video processing
+                    <br>
+                    scikit-learn — train/test splitting, class weighting, k-fold validation
+                    <br>
+                    NumPy — numerical operations on landmark data   
+                    <br>
+                    espeak — offline text-to-speech output
+                    <br><br>
+
+
+                    <strong>Hardware</strong>
+                    <br>
+                    Raspberry Pi 5 (8GB) — standalone processing unit
+                    <br>
+                    USB webcam — video input
+                    <br>
+                    USB speaker — audio output
+                    <br>
+                    Active cooler & case — thermal management
+                    <br><br>
+
+
+                    <strong>Development Tools</strong>
+                    <br>
+                    Python (3.12 dev, 3.11 compiled for Pi compatibility)
+                    <br>
+                    Git & GitHub — version control
+                    <br>
+                    Raspberry Pi Imager — OS setup
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
