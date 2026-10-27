@@ -383,32 +383,46 @@ nav a {
     grid-row: 4;
 }
 
-/* MOBILE */
 
-@media (max-width: 800px) {
+/* PHONES AND IPADS */
+@media (max-width: 900px) {
 
-    .community-gallery {
-        grid-template-columns: 1fr 1fr;
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        padding: 15px 20px;
     }
 
-    .community-text {
-        grid-column: 1 / -1;
+    .hero-text h1 {
+        font-size: 32px;
     }
 
-    .community-photo {
-        height: 220px;
-    }
-
+    .why-project,
     .how-columns {
         flex-direction: column;
-        gap: 40px;
     }
 
+    .about-image,
+    .about-text,
     .models,
     .tools {
         width: 100%;
-        flex: none;
+    }
+
+    .community-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .community-text {
+        grid-column: auto !important;
+        grid-row: auto !important;
+    }
+
+    .community-photo {
+        height: 240px !important;
     }
 }
+
 
 
